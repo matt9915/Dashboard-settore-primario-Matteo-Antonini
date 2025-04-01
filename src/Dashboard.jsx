@@ -63,8 +63,13 @@ const Dashboard = () => {
       <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-5xl mx-auto space-y-6">
 
         
-        <div className="w-full h-[150px] overflow-hidden rounded-xl mb-4">
-          <img src="/immagine-agricoltura.jpg" alt="header" className="w-full h-full object-cover" />
+        <div className="w-full aspect-[21/9] max-h-[300px] overflow-hidden rounded-xl mb-4">
+          <img 
+            src="/immagine-agricoltura.jpg" 
+            alt="header" 
+            className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+            loading="lazy"
+          />
         </div>
 
       
