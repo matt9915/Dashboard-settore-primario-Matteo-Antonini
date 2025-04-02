@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 DASHBOARD INTERATTIVA – Settore Primario
 
 
@@ -42,3 +43,6 @@ Istruzioni:
 - Recharts 
 - Axios 
 - Vite 
+=======
+# Dashboard-settore-primario-Matteo-Antonini
+>>>>>>> fb7e4486d59e1ab4d69c2c1e5979454456e60ab5
