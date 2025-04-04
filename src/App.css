@@ -1,2 +1,33 @@
 main {
 }
+@media (max-width: 768px) {
+    .recharts-legend-wrapper {
+      font-size: 12px !important;
+    }
+    
+    .recharts-text {
+      font-size: 10px !important;
+    }
+  }
+  
+  select {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  h3 {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 16px 0 12px;
+  }
+  
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 18px;
+      margin: 20px 0 16px;
+    }
+  }
