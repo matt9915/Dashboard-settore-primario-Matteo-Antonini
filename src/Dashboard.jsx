@@ -64,7 +64,7 @@ const Dashboard = () => {
   
   return (
     <div className="relative min-h-screen w-full">
-      
+      {/* 🧾 Contenuto */}
       <div className="relative z-10 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg m-4">
         <h2 className="text-3xl font-bold mb-8 text-green-800 text-center font-serif">
           🌾 Dashboard Settore Primario
@@ -100,7 +100,7 @@ const Dashboard = () => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="produzione" stroke="#34d399" name="Produzione" />
+            <Line type="monotone" dataKey="produzione" stroke="#10b981" name="Produzione" />
             <Line type="monotone" dataKey="consumi" stroke="#f59e0b" name="Consumi" />
           </LineChart>
         </ResponsiveContainer>
@@ -114,9 +114,9 @@ const Dashboard = () => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="ricavi" fill="#4ade80" name="Ricavi (€)" />
-              <Bar dataKey="costi" fill="#f87171" name="Costi (€)" />
-              <Bar dataKey="utile" fill="#facc15" name="Utile (€)" />
+              <Bar dataKey="ricavi" fill="#ff7043" name="Ricavi (€)" />
+              <Bar dataKey="costi" fill="#999999" name="Costi (€)" />
+              <Bar dataKey="utile" fill="#58508d" name="Utile (€)" />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -136,11 +136,10 @@ const Dashboard = () => {
               <Tooltip />
               <Legend />
               <Line type="monotone" dataKey="produzione" stroke="#10b981" name="Produzione Simulata" />
-              <Line type="monotone" dataKey="efficienza" stroke="#fbbf24" name="Efficienza (%)" />
+              <Line type="monotone" dataKey="efficienza" stroke="#3a6f8f" name="Efficienza (%)" />
             </LineChart>
           </ResponsiveContainer>
         </div>
-
         <div className="bg-yellow-100 p-4 rounded-md shadow mb-6">
           <h3 className="font-semibold text-lg">💰 Ricavo Medio Simulato</h3>
           <p>Per il periodo {datiSimulati[0]?.anno} - {datiSimulati[datiSimulati.length-1]?.anno} il ricavo medio previsto risulta pari a <strong>{ricavoMedioSimulato} €</strong>.</p>
@@ -155,9 +154,9 @@ const Dashboard = () => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="ricavi" fill="#4ade80" name="Ricavi (€)" />
-              <Bar dataKey="costi" fill="#f87171" name="Costi (€)" />
-              <Bar dataKey="utile" fill="#facc15" name="Utile (€)" />
+              <Bar dataKey="ricavi" fill="#ff7043" name="Ricavi (€)" />
+              <Bar dataKey="costi" fill="#999999" name="Costi (€)" />
+              <Bar dataKey="utile" fill="#58508d" name="Utile (€)" />
             </BarChart>
           </ResponsiveContainer>
         </div>
