@@ -40,7 +40,8 @@ const Dashboard = () => {
       utile: ricavi - costi
     };
   });
-
+  const ricavoTotaleSimulato = performanceSimulata.reduce((acc, d) => acc + d.ricavi, 0).toFixed(2);
+  const ricavoMedioSimulato = (ricavoTotaleSimulato / performanceSimulata.length).toFixed(2);
   useEffect(() => {
     setDatiSimulati(generaDatiSimulati(regioneSelezionata));
 
@@ -57,22 +58,25 @@ const Dashboard = () => {
   }, [regioneSelezionata]);
 
   const datiFiltrati = datiAgricoli.filter(d => d.regione === regioneSelezionata);
-
+  const efficienzaMedia = (
+    datiSimulati.reduce((acc, d) => acc + d.efficienza, 0) / datiSimulati.length
+  ).toFixed(1);
+  
   return (
-    <div className="p-6">
-      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-5xl mx-auto space-y-6">
-
-        
-        <div className="w-full h-[150px] overflow-hidden rounded-xl mb-4">
-          <img src="/immagine-agricoltura.jpg" alt="header" className="w-full h-full object-cover" />
-        </div>
-    
+    <div className="relative min-h-screen w-full">
       
-        <h1 className="text-4xl font-bold mb-4 text-green-800 text-center font-serif border-b pb-2 transition-opacity duration-1000 opacity-0 animate-fade-in">🌾 Dashboard Settore Primario</h1>
+      <div className="relative z-10 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg m-4">
+        <h2 className="text-3xl font-bold mb-8 text-green-800 text-center font-serif">
+          🌾 Dashboard Settore Primario
+        </h2>
 
-        <div className="flex flex-col md:flex-row md:justify-between items-center mb-4">
-          <label className="font-semibold mb-2 md:mb-0">Seleziona Regione:</label>
-          <select value={regioneSelezionata} onChange={(e) => setRegioneSelezionata(e.target.value)} className="p-2 border rounded-md w-full md:w-auto">
+        <div className="mb-4">
+          <label className="mr-2 font-semibold">Seleziona Regione:</label>
+          <select
+            value={regioneSelezionata}
+            onChange={(e) => setRegioneSelezionata(e.target.value)}
+            className="p-2 border rounded-md"
+          >
             {Object.keys(regionToCity).map((reg) => (
               <option key={reg} value={reg}>{reg}</option>
             ))}
@@ -80,77 +84,82 @@ const Dashboard = () => {
         </div>
 
         {weather && (
-          <div className="bg-blue-50 p-4 rounded-xl shadow border border-green-200">
-            <h3 className="font-semibold text-lg">☁️ Meteo - {weather.name}</h3>
+          <div className="bg-blue-100 p-4 rounded-md shadow mb-6">
+            <h3 className="font-semibold text-lg">☁️ Meteo a {weather.name}</h3>
             <p>🌡️ Temperatura: {weather.main.temp}°C</p>
             <p>🌤️ Condizioni: {traduciCondizioneMeteo(weather.weather[0].description)}</p>
-            <p>💨 Umidità: {weather.main.humidity}%</p>
+            <p>💧 Umidità: {weather.main.humidity}%</p>
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-4 rounded-xl border border-green-200 shadow-sm bg-white">
-            <h3 className="text-lg font-semibold mb-2 border-b pb-1 text-[#6B8E23]">📊 Produzione vs Consumi (Dati Reali)</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={datiFiltrati}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="anno" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="produzione" stroke="#6B8E23" name="Produzione" />
-                <Line type="monotone" dataKey="consumi" stroke="#8B4513" name="Consumi" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+        <h3 className="text-lg font-semibold mb-2">📊 Dati Reali: Produzione vs Consumi</h3>
+        <ResponsiveContainer width="100%" height={window.innerWidth < 768 ? 250 : 300}>
+          <LineChart data={datiFiltrati}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="anno" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="produzione" stroke="#34d399" name="Produzione" />
+            <Line type="monotone" dataKey="consumi" stroke="#f59e0b" name="Consumi" />
+          </LineChart>
+        </ResponsiveContainer>
 
-          <div className="p-4 rounded-xl border border-green-200 shadow-sm bg-white">
-            <h3 className="text-lg font-semibold mb-2 border-b pb-1 text-[#6B8E23]">📊 Performance Finanziaria Reale</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={datiPerformance}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="anno" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="ricavi" fill="#6B8E23" name="Ricavi (€)" />
-                <Bar dataKey="costi" fill="#8B4513" name="Costi (€)" />
-                <Bar dataKey="utile" fill="#FFD700" name="Utile (€)" />
-              </BarChart>
-            </ResponsiveContainer>
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold mb-2">📊 Performance Finanziaria Reale</h3>
+          <ResponsiveContainer width="100%" height={window.innerWidth < 768 ? 250 : 300}>
+            <BarChart data={datiPerformance}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="anno" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="ricavi" fill="#4ade80" name="Ricavi (€)" />
+              <Bar dataKey="costi" fill="#f87171" name="Costi (€)" />
+              <Bar dataKey="utile" fill="#facc15" name="Utile (€)" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        
+        <div className="p-4 rounded-xl border border-green-200 shadow-sm bg-white">
+          <h3 className="font-semibold text-lg">🌿 Efficienza Media Stimata</h3>
+            <p>Nei prossimi anni simulati ({datiSimulati[0]?.anno} - {datiSimulati[datiSimulati.length-1]?.anno}) l'efficienza media prevista è pari a <strong>{efficienzaMedia}%</strong>.</p>
           </div>
+        
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold mb-2">🔁 Simulazione: Produzione ed Efficienza</h3>
+          <ResponsiveContainer width="100%" height={window.innerWidth < 768 ? 250 : 300}>
+            <LineChart data={datiSimulati}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="anno" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="produzione" stroke="#10b981" name="Produzione Simulata" />
+              <Line type="monotone" dataKey="efficienza" stroke="#fbbf24" name="Efficienza (%)" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
 
-          <div className="p-4 rounded-xl border border-green-200 shadow-sm bg-white">
-            <h3 className="text-lg font-semibold mb-2 border-b pb-1 text-[#6B8E23]">🔁 Simulazione: Produzione ed Efficienza</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={datiSimulati}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="anno" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="produzione" stroke="#9ACD32" name="Produzione Simulata" />
-                <Line type="monotone" dataKey="efficienza" stroke="#FFD700" name="Efficienza (%)" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="p-4 rounded-xl border border-green-200 shadow-sm bg-white">
-            <h3 className="text-lg font-semibold mb-2 border-b pb-1 text-[#6B8E23]">🔮 Performance Finanziaria Simulata</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={performanceSimulata}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="anno" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="ricavi" fill="#6B8E23" name="Ricavi (€)" />
-                <Bar dataKey="costi" fill="#8B4513" name="Costi (€)" />
-                <Bar dataKey="utile" fill="#FFD700" name="Utile (€)" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
+        <div className="bg-yellow-100 p-4 rounded-md shadow mb-6">
+          <h3 className="font-semibold text-lg">💰 Ricavo Medio Simulato</h3>
+          <p>Per il periodo {datiSimulati[0]?.anno} - {datiSimulati[datiSimulati.length-1]?.anno} il ricavo medio previsto risulta pari a <strong>{ricavoMedioSimulato} €</strong>.</p>
+        </div>
+        
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold mb-2">🔮 Performance Finanziaria Simulata</h3>
+          <ResponsiveContainer width="100%" height={window.innerWidth < 768 ? 250 : 300}>
+            <BarChart data={performanceSimulata}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="anno" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="ricavi" fill="#4ade80" name="Ricavi (€)" />
+              <Bar dataKey="costi" fill="#f87171" name="Costi (€)" />
+              <Bar dataKey="utile" fill="#facc15" name="Utile (€)" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>

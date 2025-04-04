@@ -5,11 +5,12 @@ const App = () => {
   return (
     <div
       style={{
-        backgroundImage: `linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url("https://images.unsplash.com/photo-1600613253294-0191dbdf96a6")`,
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url("/immagine-agricola.jpg")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
-        padding: "48px"
+        padding: "16px",
+        overflowX: "hidden"
       }}
     >
       <Dashboard />
