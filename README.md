@@ -28,12 +28,13 @@ Requisiti:
 - Node.js installato (https://nodejs.org)
 
 Istruzioni:
-1. Aprire la cartella in VS Code
-2. Aprire il terminale (`Terminale > Nuovo terminale`)
-3. Digitare:
+1. Effettuare il download per estrarre il file
+2. Aprire la cartella in VS Code
+3. Aprire il terminale (`Terminale > Nuovo terminale`)
+4. Digitare:
    npm install
    npm run dev
-4. Aprire il link mostrato nel browser (es: http://localhost:5173)
+5. Aprire il link mostrato nel browser (es: http://localhost:5173)
 
 
 
