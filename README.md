@@ -30,7 +30,7 @@ Requisiti:
 Istruzioni:
 1. Effettuare il download per estrarre il file
 2. Aprire la cartella in VS Code
-3. Aprire il terminale (`Terminale > Nuovo terminale`)
+3. Aprire il terminale (Terminale > Nuovo terminale)
 4. Digitare:
    npm install
    npm run dev
