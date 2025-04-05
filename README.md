@@ -3,7 +3,7 @@ DASHBOARD INTERATTIVA – Settore Primario
 
 
 Descrizione:
-Questo progetto consiste in una dashboard interattiva sviluppata con React + Vite, per l’analisi e il monitoraggio delle performance produttive nel settore agricolo.  
+Questo progetto consiste in una dashboard interattiva sviluppata con Javascript+ React , per l’analisi e il monitoraggio delle performance produttive nel settore agricolo.  
 Combina dati reali (produzione e consumi regionali) con dati simulati ambientali (temperatura, umidità, precipitazioni), calcola l’efficienza e integra anche dati meteo in tempo reale tramite API.
 
 
