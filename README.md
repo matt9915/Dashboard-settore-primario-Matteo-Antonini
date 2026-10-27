@@ -1,47 +1,61 @@
+# Dashboard Interattiva – Settore Primario
 
-DASHBOARD INTERATTIVA – Settore Primario
+## Descrizione
 
+Dashboard web interattiva sviluppata con **JavaScript e React** per l'analisi e il monitoraggio delle performance produttive nel settore agricolo.
 
-Descrizione:
-Questo progetto consiste in una dashboard interattiva sviluppata con Javascript+ React , per l’analisi e il monitoraggio delle performance produttive nel settore agricolo.  
-Combina dati reali (produzione e consumi regionali) con dati simulati ambientali (temperatura, umidità, precipitazioni), calcola l’efficienza e integra anche dati meteo in tempo reale tramite API.
+Il progetto combina dati storici reali relativi alla produzione e ai consumi regionali con dati ambientali simulati, tra cui temperatura, umidità e precipitazioni.
 
+L'applicazione permette inoltre di analizzare indicatori di efficienza e integra informazioni meteorologiche in tempo reale tramite API.
 
+## Funzionalità principali
 
- STRUTTURA DEL PROGETTO
+- Visualizzazione interattiva dei dati agricoli ed economici.
+- Analisi dei dati storici di produzione e consumo.
+- Filtri per città e periodo temporale.
+- Simulazione di parametri ambientali e produttivi.
+- Calcolo e visualizzazione di indicatori di efficienza.
+- Integrazione di dati meteorologici tramite API esterna.
+- Grafici dinamici per facilitare il confronto dei dati.
 
-- `src/` → Codice React e componenti
-- `datiAgricoli.js` → Dati storici reali
-- `simulatoreDati.js` → Generatore di dati simulati
-- `meteoUtils.js` → Traduzione meteo
-- `Dashboard.js` → Componente principale
-- `package.json` → Lista delle dipendenze
-- `vite.config.js/ts` → Configurazione Vite
-- `README.txt` → Questo file
+## Tecnologie utilizzate
 
+- **React** – Sviluppo dell'interfaccia utente.
+- **JavaScript** – Logica applicativa ed elaborazione dei dati.
+- **Vite** – Ambiente di sviluppo e build.
+- **Recharts** – Visualizzazione dei dati tramite grafici.
+- **Axios** – Gestione delle richieste HTTP.
 
+## Struttura del progetto
 
- COME AVVIARE IL PROGETTO
+- `src/` – Codice sorgente React e componenti.
+- `datiAgricoli.js` – Dati storici agricoli.
+- `simulatoreDati.js` – Generazione dei dati simulati.
+- `meteoUtils.js` – Gestione e traduzione delle informazioni meteorologiche.
+- `Dashboard.js` – Componente principale della dashboard.
+- `package.json` – Dipendenze e script del progetto.
+- `vite.config.js` / `vite.config.ts` – Configurazione di Vite.
 
-Requisiti:
-- Visual Studio Code installato
-- Node.js installato (https://nodejs.org)
+## Installazione e avvio
 
-Istruzioni:
-1. Effettuare il download per estrarre il file
-2. Aprire la cartella in VS Code
-3. Aprire il terminale (Terminale > Nuovo terminale)
-4. Digitare:
-   npm install
-   npm run dev
-5. Aprire il link mostrato nel browser (es: http://localhost:5173)
+**Requisiti:** Node.js e npm.
 
+1. Scaricare o clonare il repository.
+2. Aprire la cartella del progetto in un editor di codice.
+3. Installare le dipendenze:
 
+   `npm install`
 
-LIBRERIE UTILIZZATE
+4. Avviare il server di sviluppo:
 
-- React 
-- Recharts 
-- Axios 
-- Vite 
+   `npm run dev`
 
+5. Aprire nel browser l'indirizzo locale mostrato nel terminale, generalmente `http://localhost:5173`.
+
+**Nota:** per utilizzare le funzionalità meteorologiche potrebbe essere necessaria la configurazione di una chiave API, secondo le impostazioni del progetto.
+
+## Contesto del progetto
+
+Progetto sviluppato nell'ambito del percorso di laurea triennale in Informatica per le Aziende Digitali (L-31) presso l'Università Telematica Pegaso.
+
+L'obiettivo è applicare tecnologie web moderne all'analisi dei dati, combinando sviluppo front-end, visualizzazione delle informazioni e simulazione di scenari.
