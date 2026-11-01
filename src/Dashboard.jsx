@@ -7,7 +7,7 @@ import datiAgricoli from "./datiCREA";
 import generaDatiSimulati from "./datiRandom";
 import { traduciCondizioneMeteo } from "./datiMeteo";
 
-const API_KEY = "d37f8cb3bb3b48fb3cd39c0b5701bf3e";
+
 
 const regionToCity = {
   Abruzzo: "L'Aquila", Basilicata: "Potenza", Calabria: "Catanzaro", Campania: "Napoli", EmiliaRomagna: "Bologna",
@@ -45,14 +45,21 @@ const Dashboard = () => {
   useEffect(() => {
     setDatiSimulati(generaDatiSimulati(regioneSelezionata));
 
-    const fetchWeather = async () => {
-      try {
-        const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${regionToCity[regioneSelezionata]}&appid=${API_KEY}&units=metric`);
-        setWeather(res.data);
-      } catch (err) {
-        console.error("Errore nel recupero del meteo:", err);
-      }
-    };
+   
+const fetchWeather = async () => {
+  try {
+    const city = regionToCity[regioneSelezionata];
+
+    const res = await axios.get("/api/weather", {
+      params: { city }
+    });
+
+    setWeather(res.data);
+  } catch (err) {
+    console.error("Errore nel recupero del meteo:", err);
+  }
+};
+
 
     fetchWeather();
   }, [regioneSelezionata]);
